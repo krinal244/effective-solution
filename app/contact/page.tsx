@@ -109,6 +109,37 @@ export default function ContactPage() {
         </div>
       </header>
 
+      {/* Mobile sidebar (shows when isMenuOpen is true) */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-50">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setIsMenuOpen(false)} aria-hidden="true" />
+          <aside className="absolute right-0 top-0 h-full w-11/12 max-w-xs bg-card shadow-2xl p-6">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="font-serif font-bold text-lg">Menu</h2>
+                <p className="text-sm text-muted-foreground">Effective Solution</p>
+              </div>
+              <button onClick={() => setIsMenuOpen(false)} aria-label="Close menu" className="p-2 rounded-md hover:bg-muted/50">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <nav className="flex flex-col space-y-4">
+              <a href="/" onClick={() => setIsMenuOpen(false)} className="text-foreground">Home</a>
+              <a href="/about" onClick={() => setIsMenuOpen(false)} className="text-foreground">About</a>
+              <a href="/#services" onClick={() => setIsMenuOpen(false)} className="text-foreground">Services</a>
+              <a href="/testimonials" onClick={() => setIsMenuOpen(false)} className="text-foreground">Testimonials</a>
+              <a href="/contact" onClick={() => setIsMenuOpen(false)} className="text-foreground">Contact</a>
+            </nav>
+
+            <div className="mt-6 space-y-3">
+              <Button variant="outline" size="sm" onClick={() => setIsMenuOpen(false)} className="w-full">Get Quote</Button>
+              <Button size="sm" className="w-full bg-accent hover:bg-accent/90" onClick={() => setIsMenuOpen(false)}>Get Started</Button>
+            </div>
+          </aside>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-background to-primary/5"></div>

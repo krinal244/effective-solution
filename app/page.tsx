@@ -125,6 +125,62 @@ export default function HomePage() {
         </div>
       </header>
 
+      {/* Mobile sidebar (shows when isMenuOpen is true) */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-50">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setIsMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Panel */}
+          <aside className="absolute right-0 top-0 h-full w-11/12 max-w-xs bg-card shadow-2xl p-6">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="font-serif font-bold text-lg">Menu</h2>
+                <p className="text-sm text-muted-foreground">Effective Solution</p>
+              </div>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="Close menu"
+                className="p-2 rounded-md hover:bg-muted/50"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <nav className="flex flex-col space-y-4">
+              <Link href="/" onClick={() => setIsMenuOpen(false)} className="text-foreground">
+                Home
+              </Link>
+              <Link href="/about" onClick={() => setIsMenuOpen(false)} className="text-foreground">
+                About
+              </Link>
+              <Link href="#services" onClick={() => setIsMenuOpen(false)} className="text-foreground">
+                Services
+              </Link>
+              <Link href="/testimonials" onClick={() => setIsMenuOpen(false)} className="text-foreground">
+                Testimonials
+              </Link>
+              <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="text-foreground">
+                Contact
+              </Link>
+            </nav>
+
+            <div className="mt-6 space-y-3">
+              <Button variant="outline" size="sm" onClick={() => setIsMenuOpen(false)} className="w-full">
+                Get Quote
+              </Button>
+              <Button size="sm" className="w-full bg-accent hover:bg-accent/90" onClick={() => setIsMenuOpen(false)}>
+                Get Started
+              </Button>
+            </div>
+          </aside>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section id="home" className="relative py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-background to-primary/5"></div>
@@ -152,9 +208,7 @@ export default function HomePage() {
                 <Button size="lg" className="bg-accent hover:bg-accent/90">
                   Learn More <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-                <Button variant="outline" size="lg">
-                  View Services
-                </Button>
+               
               </div>
             </div>
 
@@ -315,8 +369,8 @@ export default function HomePage() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="text-center fade-in-up group reveal-mask"
-                style={{ "--stagger": index } as React.CSSProperties}
+                className="text-center fade-in-up group reveal-mask animate"
+                style={{ "--stagger": index, animationDelay: `${index * 0.15}s`, transitionDelay: `${index * 0.12}s` } as React.CSSProperties}
               >
                 <div className="w-20 h-20 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
                   <item.icon className="w-10 h-10 text-accent" />
@@ -353,8 +407,8 @@ export default function HomePage() {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="text-center scale-in reveal-mask"
-                style={{ "--stagger": index } as React.CSSProperties}
+                className="text-center scale-in reveal-mask animate"
+                style={{ "--stagger": index, animationDelay: `${index * 0.12}s`, transitionDelay: `${index * 0.1}s` } as React.CSSProperties}
               >
                 <div className="text-4xl lg:text-6xl font-serif font-bold mb-2 text-white">{stat.number}</div>
                 <p className="text-white/80">{stat.label}</p>
@@ -471,7 +525,7 @@ export default function HomePage() {
             <div className="fade-in-up">
               <h4 className="font-serif font-bold text-lg mb-6">Quick Links</h4>
               <ul className="space-y-3">
-                {["Home", "About Us", "Services", "Contact Us"].map((link, index) => (
+                {["Home", "About", "Services", "Contact"].map((link, index) => (
                   <li key={index}>
                     <Link
                       href={link.toLowerCase()}
