@@ -174,9 +174,9 @@ export default function AboutPage() {
                 with customer success. We've evolved from a local IT service provider to a comprehensive technology
                 solutions company, always staying ahead of industry trends and emerging technologies.
               </p>
-              <Button size="lg" className="bg-accent hover:bg-accent/90">
+              {/* <Button size="lg" className="bg-accent hover:bg-accent/90">
                 Learn More About Our Journey <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              </Button> */}
             </div>
             <div>
               <img src="/modern-office-collaboration.png" alt="Our Team" className="w-full h-auto rounded-2xl shadow-2xl" />

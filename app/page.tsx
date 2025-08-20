@@ -191,12 +191,12 @@ export default function HomePage() {
                 services and cutting-edge products. Our mission is to empower small, medium, and large enterprises to
                 thrive in the digital era by delivering scalable, efficient, and secure IT solutions.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 hero-buttons-mask">
+              {/* <div className="flex flex-col sm:flex-row gap-4 hero-buttons-mask">
                 <Button size="lg" className="bg-accent hover:bg-accent/90">
                   Learn More <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
                
-              </div>
+              </div> */}
             </div>
 
             <div className="hero-image-mask">
