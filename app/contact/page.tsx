@@ -342,6 +342,7 @@ export default function ContactPage() {
                 {/* <p className="text-primary-foreground/80">+91 84697 09902</p> */}
                 <p className="text-primary-foreground/80">Email - info@effectivesolution.in</p>
                 {/* WhatsApp button positioned at bottom right */}
+                
                 <div className="mt-4 md:mt-0">
                   <a
                     href="https://wa.me/9825038092?text=Hello%20J%20%20D%Lights%20&Automation%2C%20I%27m%20interested%20in%20your%20smart%20home%20solutions"
