@@ -539,12 +539,12 @@ export default function HomePage() {
               <h4 className="font-serif font-bold text-lg mb-6">Get In Touch</h4>
               <div className="space-y-4">
                 <p className="text-primary-foreground/80">S-1 Akash Complex, Satellite, Ahmedabad Gujarat, India.</p>
-                <p className="text-primary-foreground/80">+91 84697 09902</p>
+                {/* <p className="text-primary-foreground/80">+91 84697 09902</p> */}
                 <p className="text-primary-foreground/80">Email - info@effectivesolution.in</p>
                 {/* WhatsApp button positioned at bottom right */}
                 <div className="mt-4 md:mt-0">
                   <a
-                    href="https://wa.me/9825038092?text=Hello%20J%20%20D%Lights%20&Automation%2C%20I%27m%20interested%20in%20your%20smart%20home%20solutions"
+                    href="https://wa.me/9824453231?text=Hello%20J%20%20D%Lights%20&Automation%2C%20I%27m%20interested%20in%20your%20smart%20home%20solutions"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-3 group"

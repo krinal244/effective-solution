@@ -339,7 +339,7 @@ export default function ContactPage() {
               <h4 className="font-serif font-bold text-lg mb-6">Get In Touch</h4>
               <div className="space-y-4">
                 <p className="text-primary-foreground/80">S-1 Akash Complex, Satellite, Ahmedabad Gujarat, India.</p>
-                <p className="text-primary-foreground/80">+91 84697 09902</p>
+                {/* <p className="text-primary-foreground/80">+91 84697 09902</p> */}
                 <p className="text-primary-foreground/80">Email - info@effectivesolution.in</p>
                 {/* WhatsApp button positioned at bottom right */}
                 <div className="mt-4 md:mt-0">
