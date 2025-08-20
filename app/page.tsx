@@ -79,20 +79,16 @@ export default function HomePage() {
       <header className="sticky top-0 z-50 glass-effect border-b border-border/50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              {/* <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center"> */}
-                {/* <Zap className="w-6 h-6 text-accent-foreground" /> */}
-                <div className="w-25 h-12 rounded-lg flex items-center justify-center">
-                  <img src="/logo.jpg" alt="Logo" className="w-full h-full object-contain" />
-                </div>
-              {/* </div> */}
+            <div className="flex items-center space-x-3 min-w-max">
+              <div className="w-25 h-12 rounded-lg flex items-center justify-center">
+                <img src="/logo.jpg" alt="Logo" className="w-full h-full object-contain" />
+              </div>
               <div>
                 <h1 className="font-serif font-bold text-xl text-foreground">Effective Solution</h1>
                 <p className="text-xs text-muted-foreground">One Touch IT Solution</p>
               </div>
             </div>
-
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex flex-1 items-center justify-center space-x-8">
               <Link href="/" className="text-foreground hover:text-accent transition-colors">
                 Home
               </Link>
@@ -109,16 +105,6 @@ export default function HomePage() {
                 Contact
               </Link>
             </nav>
-
-            <div className="hidden md:flex items-center space-x-4">
-              <Button variant="outline" size="sm">
-                Get Quote
-              </Button>
-              <Button size="sm" className="bg-accent hover:bg-accent/90">
-                Get Started <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-
             <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -140,8 +126,8 @@ export default function HomePage() {
           <aside className="absolute right-0 top-0 h-full w-11/12 max-w-xs bg-card shadow-2xl p-6">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h2 className="font-serif font-bold text-lg">Menu</h2>
-                <p className="text-sm text-muted-foreground">Effective Solution</p>
+                <h2 className="font-serif font-bold text-lg">Effective Solution</h2>
+                {/* <p className="text-sm text-muted-foreground">Effective Solution</p> */}
               </div>
               <button
                 onClick={() => setIsMenuOpen(false)}
@@ -170,14 +156,14 @@ export default function HomePage() {
               </Link>
             </nav>
 
-            <div className="mt-6 space-y-3">
+            {/* <div className="mt-6 space-y-3">
               <Button variant="outline" size="sm" onClick={() => setIsMenuOpen(false)} className="w-full">
                 Get Quote
               </Button>
               <Button size="sm" className="w-full bg-accent hover:bg-accent/90" onClick={() => setIsMenuOpen(false)}>
                 Get Started
               </Button>
-            </div>
+            </div> */}
           </aside>
         </div>
       )}
@@ -309,7 +295,7 @@ export default function HomePage() {
                   <div className="w-16 h-16 bg-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
                     <service.icon className="w-8 h-8 text-accent" />
                   </div>
-                  <h3 className="font-serif font-bold text-xl mb-4">{service.title}</h3>
+                  <a href="https://effectivehosting.in/" className="font-serif font-bold text-xl hover:underline hover:text-blue-800 mb-4">{service.title}</a>
                   <p className="text-muted-foreground mb-6 leading-relaxed">{service.description}</p>
                   <ul className="space-y-2 mb-6">
                     {service.features.map((feature, idx) => (
@@ -319,12 +305,6 @@ export default function HomePage() {
                       </li>
                     ))}
                   </ul>
-                  <Button
-                    variant="outline"
-                    className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors bg-transparent"
-                  >
-                    Learn More
-                  </Button>
                 </CardContent>
               </Card>
             ))}
