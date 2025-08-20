@@ -527,7 +527,7 @@ export default function HomePage() {
                 {["Dedicated Hosting", "Cloud Hosting", "VPS Hosting", "Managed Hosting"].map((service, index) => (
                   <li key={index}>
                     <Link
-                      href={service.toLowerCase()}
+                      href="https://effectivehosting.in/"
                       className="text-primary-foreground/80 hover:text-accent transition-colors"
                     >
                       {service}

@@ -402,7 +402,7 @@ export default function TestimonialsPage() {
               <ul className="space-y-3">
                 {["Dedicated Hosting", "Cloud Hosting", "VPS Hosting", "Managed Hosting"].map((service, index) => (
                   <li key={index}>
-                    <a href="/#services" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                    <a href="https://effectivehosting.in/" className="text-primary-foreground/80 hover:text-accent transition-colors">
                       {service}
                     </a>
                   </li>
