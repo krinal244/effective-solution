@@ -7,18 +7,14 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Zap, ArrowRight, Menu, X, MapPin, Phone, Mail, Clock, Send, MessageSquare } from "lucide-react"
+import { Zap, ArrowRight, Menu, X, MapPin, Phone, Mail, Clock, Send, MessageSquare, MessageCircle } from "lucide-react"
 
 export default function ContactPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    service: "",
-    message: "",
-  })
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const [status, setStatus] = useState("")
   const observerRef = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
@@ -43,18 +39,24 @@ export default function ContactPage() {
     }
   }, [])
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setStatus("Sending...")
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message }),
     })
+    if (res.ok) {
+      setStatus("Message sent successfully!")
+      setName("")
+      setEmail("")
+      setMessage("")
+    } else {
+      setStatus("Error sending message.")
+    }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -165,225 +167,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      {/* <section className="py-20 bg-muted/30 relative overflow-hidden">
-        <div className="container mx-auto px-4 relative">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            {/* <div className="fade-in-left reveal-mask">
-              <Card className="border-0 shadow-xl">
-                <CardContent className="p-8">
-                  <h2 className="font-serif font-bold text-2xl mb-6">Send Us a Message</h2>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium mb-2">
-                          Full Name *
-                        </label>
-                        <Input
-                          id="name"
-                          name="name"
-                          type="text"
-                          required
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          className="w-full"
-                          placeholder="Your full name"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium mb-2">
-                          Email Address *
-                        </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className="w-full"
-                          placeholder="your@email.com"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="company" className="block text-sm font-medium mb-2">
-                          Company Name
-                        </label>
-                        <Input
-                          id="company"
-                          name="company"
-                          type="text"
-                          value={formData.company}
-                          onChange={handleInputChange}
-                          className="w-full"
-                          placeholder="Your company"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                          Phone Number
-                        </label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className="w-full"
-                          placeholder="+91 XXXXX XXXXX"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="service" className="block text-sm font-medium mb-2">
-                        Service Interest
-                      </label>
-                      <select
-                        id="service"
-                        name="service"
-                        value={formData.service}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-accent"
-                      >
-                        <option value="">Select a service</option>
-                        <option value="dedicated-hosting">Dedicated Hosting</option>
-                        <option value="cloud-hosting">Cloud Hosting</option>
-                        <option value="vps-hosting">VPS Hosting</option>
-                        <option value="managed-hosting">Managed Hosting</option>
-                        <option value="shared-hosting">Shared Hosting</option>
-                        <option value="colocation">Colocation</option>
-                        <option value="consultation">IT Consultation</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium mb-2">
-                        Message *
-                      </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        required
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        rows={5}
-                        className="w-full"
-                        placeholder="Tell us about your project requirements..."
-                      />
-                    </div>
-
-                    <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90">
-                      Send Message <Send className="w-5 h-5 ml-2" />
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </div> */}
-
-            {/* Contact Information */}
-            {/* <div className="fade-in-right reveal-mask">
-              <div className="space-y-8">
-                <div>
-                  <h2 className="font-serif font-bold text-2xl mb-6">Get In Touch</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-8">
-                    We're here to help you succeed. Whether you need technical support, want to discuss a new project,
-                    or have questions about our services, our team is ready to assist you.
-                  </p>
-                </div>
-
-                <div className="space-y-6">
-                  {[
-                    {
-                      icon: MapPin,
-                      title: "Visit Our Office",
-                      content: "S-1 Akash Complex, Satellite, Ahmedabad Gujarat, India",
-                      color: "bg-blue-500/10 text-blue-600",
-                    },
-                    {
-                      icon: Phone,
-                      title: "Call Us",
-                      content: "+91 84697 09902",
-                      color: "bg-green-500/10 text-green-600",
-                    },
-                    {
-                      icon: Mail,
-                      title: "Email Us",
-                      content: "info@effectivesolution.in",
-                      color: "bg-purple-500/10 text-purple-600",
-                    },
-                    {
-                      icon: Clock,
-                      title: "Business Hours",
-                      content: "Monday - Friday: 9:00 AM - 6:00 PM IST\nSaturday: 10:00 AM - 4:00 PM IST",
-                      color: "bg-orange-500/10 text-orange-600",
-                    },
-                  ].map((item, index) => (
-                    <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-                      <CardContent className="p-6">
-                        <div className="flex items-start space-x-4">
-                          <div
-                            className={`w-12 h-12 ${item.color} rounded-lg flex items-center justify-center flex-shrink-0`}
-                          >
-                            <item.icon className="w-6 h-6" />
-                          </div>
-                          <div>
-                            <h3 className="font-semibold mb-2">{item.title}</h3>
-                            <p className="text-muted-foreground whitespace-pre-line">{item.content}</p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-
-                <Card className="border-0 shadow-lg bg-gradient-to-br from-accent/5 to-primary/5">
-                  <CardContent className="p-6">
-                    <h3 className="font-serif font-bold text-lg mb-3">Need Immediate Support?</h3>
-                    <p className="text-muted-foreground mb-4">
-                      For urgent technical issues or emergencies, our support team is available 24/7.
-                    </p>
-                    <Button variant="outline" className="w-full bg-transparent">
-                      Emergency Support <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-            </div> */}
-          {/* </div>
-        </div>
-      </section> */} 
-      {/* Map Section */}
-      {/* <section className="py-20 relative overflow-hidden">
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-12 fade-in-up reveal-mask">
-            <h2 className="font-serif font-bold text-3xl lg:text-4xl mb-4">Find Us</h2>
-            <p className="text-muted-foreground">Located in the heart of Ahmedabad's technology district</p>
-          </div>
-
-          <div className="fade-in-up reveal-mask">
-            <Card className="border-0 shadow-xl overflow-hidden">
-              <div className="h-96 bg-muted/50 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-12 h-12 text-accent mx-auto mb-4" />
-                  <p className="text-muted-foreground">Interactive map would be embedded here</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    S-1 Akash Complex, Satellite, Ahmedabad Gujarat, India
-                  </p>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section> */}
-
-   
-
       {/* Contact Info Flex Box */}
       <section className="py-8">
         <div className="container mx-auto px-4">
@@ -419,7 +202,69 @@ export default function ContactPage() {
         </div>
       </section>
 
-
+      {/* Contact Form Section */}
+      <section className="py-20 bg-muted/30 relative overflow-hidden">
+        <div className="container mx-auto px-4 relative">
+          <div className="flex justify-center">
+            <div className="flex flex-col md:flex-row max-w-4xl mx-auto bg-card rounded-xl shadow-xl overflow-hidden">
+              {/* Left Image */}
+              <div className="md:w-1/2 w-full h-64 md:h-auto">
+                <img src="/contact-office-modern.png" alt="Contact Image" className="w-full h-full object-cover" />
+              </div>
+              {/* Right Contact Info & Form */}
+              <div className="md:w-1/2 w-full p-8 flex flex-col justify-center">
+                <h2 className="font-serif font-bold text-3xl mb-6 text-foreground">Contact Us</h2>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Full Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                      className="w-full px-4 py-3 border border-border rounded-lg bg-muted/50 focus:outline-none focus:ring-2 focus:ring-accent text-base text-foreground placeholder:text-muted-foreground"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      placeholder="E-mail"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="w-full px-4 py-3 border border-border rounded-lg bg-muted/50 focus:outline-none focus:ring-2 focus:ring-accent text-base text-foreground placeholder:text-muted-foreground"
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      placeholder="Message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
+                      className="w-full px-4 py-3 border border-border rounded-lg bg-muted/50 focus:outline-none focus:ring-2 focus:ring-accent text-base resize-none min-h-[120px] max-h-[120px] overflow-y-auto text-foreground placeholder:text-muted-foreground"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="bg-accent text-accent-foreground px-8 py-3 rounded-full font-medium text-base hover:bg-accent/90 transition-colors w-full md:w-auto"
+                  >
+                    Contact Us
+                  </button>
+                  {status && <p className="text-sm mt-2 text-muted-foreground">{status}</p>}
+                </form>
+                <div className="mt-8 text-sm text-muted-foreground">
+                  <p>
+                    <strong className="text-foreground">Contact:</strong> info@effectivesolution.in
+                  </p>
+                  <p>
+                    <strong className="text-foreground">Based in:</strong> Gujarat, India
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
 
       {/* Footer */}
@@ -484,6 +329,19 @@ export default function ContactPage() {
                 <p className="text-primary-foreground/80">S-1 Akash Complex, Satellite, Ahmedabad Gujarat, India.</p>
                 <p className="text-primary-foreground/80">+91 84697 09902</p>
                 <p className="text-primary-foreground/80">Email - info@effectivesolution.in</p>
+                {/* WhatsApp button positioned at bottom right */}
+                <div className="mt-4 md:mt-0">
+                  <a
+                    href="https://wa.me/9825038092?text=Hello%20J%20%20D%Lights%20&Automation%2C%20I%27m%20interested%20in%20your%20smart%20home%20solutions"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-3 group"
+                    aria-label="Contact us on WhatsApp"
+                  >
+                    <MessageCircle size={20} className="group-hover:animate-pulse" />
+                    <span className="font-medium">Chat on WhatsApp</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

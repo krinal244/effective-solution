@@ -20,6 +20,7 @@ import {
   ArrowRight,
   Menu,
   X,
+  MessageCircle,
 } from "lucide-react"
 import { useState } from "react"
 
@@ -242,7 +243,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-[url('/abstract-network-pattern.png')] bg-repeat"></div>
         </div>
         <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-16 fade-in-up reveal-mask">
+          <div className="text-center mb-16">
             <Badge variant="secondary" className="mb-4">
               Our Services
             </Badge>
@@ -424,7 +425,7 @@ export default function HomePage() {
           <div className="absolute top-20 right-20 w-40 h-40 bg-accent/5 rounded-full blur-2xl float-animation"></div>
         </div>
         <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-16 fade-in-up reveal-mask">
+          <div className="text-center mb-16">
             <Badge variant="secondary" className="mb-4">
               Testimonials
             </Badge>
@@ -560,10 +561,22 @@ export default function HomePage() {
                 <p className="text-primary-foreground/80">S-1 Akash Complex, Satellite, Ahmedabad Gujarat, India.</p>
                 <p className="text-primary-foreground/80">+91 84697 09902</p>
                 <p className="text-primary-foreground/80">Email - info@effectivesolution.in</p>
+                {/* WhatsApp button positioned at bottom right */}
+                <div className="mt-4 md:mt-0">
+                  <a
+                    href="https://wa.me/9825038092?text=Hello%20J%20%20D%Lights%20&Automation%2C%20I%27m%20interested%20in%20your%20smart%20home%20solutions"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-3 group"
+                    aria-label="Contact us on WhatsApp"
+                  >
+                    <MessageCircle size={20} className="group-hover:animate-pulse" />
+                    <span className="font-medium">Chat on WhatsApp</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-
           <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center">
             <p className="text-primary-foreground/60">All Rights Reserved © 2025 EFFECTIVE SOLUTION.</p>
           </div>

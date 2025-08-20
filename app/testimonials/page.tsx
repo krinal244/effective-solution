@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Zap, ArrowRight, Menu, X, Star, Quote } from "lucide-react"
+import { Zap, ArrowRight, Menu, X, Star, Quote, MessageCircle } from "lucide-react"
 import { useState } from "react"
 
 export default function TestimonialsPage() {
@@ -219,7 +219,7 @@ export default function TestimonialsPage() {
       {/* More Testimonials */}
       <section className="py-20 relative overflow-hidden">
         <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-16 fade-in-up reveal-mask">
+          <div className="text-center mb-16">
             <h2 className="font-serif font-bold text-3xl lg:text-4xl mb-6">More Success Stories</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Join hundreds of satisfied clients who have transformed their digital presence with our solutions
@@ -318,7 +318,7 @@ export default function TestimonialsPage() {
           <div className="absolute inset-0 bg-[url('/abstract-network-pattern.png')] bg-repeat"></div>
         </div>
         <div className="container mx-auto px-4 relative">
-          <div className="text-center max-w-3xl mx-auto fade-in-up reveal-mask">
+          <div className="text-center max-w-3xl mx-auto ">
             <h2 className="font-serif font-bold text-3xl lg:text-4xl mb-6 text-white">
               Ready to Join Our Success Stories?
             </h2>
@@ -404,7 +404,20 @@ export default function TestimonialsPage() {
                 <p className="text-primary-foreground/80">S-1 Akash Complex, Satellite, Ahmedabad Gujarat, India.</p>
                 <p className="text-primary-foreground/80">+91 84697 09902</p>
                 <p className="text-primary-foreground/80">Email - info@effectivesolution.in</p>
-              </div>
+                {/* WhatsApp button positioned at bottom right */}
+                <div className="mt-4 md:mt-0">
+                  <a
+                    href="https://wa.me/9825038092?text=Hello%20J%20%20D%Lights%20&Automation%2C%20I%27m%20interested%20in%20your%20smart%20home%20solutions"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-3 group"
+                    aria-label="Contact us on WhatsApp"
+                  >
+                    <MessageCircle size={20} className="group-hover:animate-pulse" />
+                    <span className="font-medium">Chat on WhatsApp</span>
+                  </a>
+                </div>
+            </div>
             </div>
           </div>
 
