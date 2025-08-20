@@ -422,7 +422,7 @@ export default function TestimonialsPage() {
                     href="https://wa.me/9824453231?text=Hello%20Effective%20Solutions"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-3 group"
+                    className="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-3 group w-fit"
                     aria-label="Contact us on WhatsApp"
                   >
                     <MessageCircle size={20} className="group-hover:animate-pulse" />
