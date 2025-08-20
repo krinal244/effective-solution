@@ -325,7 +325,7 @@ export default function ContactPage() {
             <div className="fade-in-up">
               <h4 className="font-serif font-bold text-lg mb-6">Services</h4>
               <ul className="space-y-3">
-                {["Dedicated Hosting", "Cloud Hosting", "VPS Hosting", "Managed Hosting"].map((service, index) => (
+                {["Dedicated Hosting", "Cloud Hosting", "Shared Hosting", "VPS Hosting", "Managed Hosting", "Colocation"].map((service, index) => (
                   <li key={index}>
                     <a href="https://effectivehosting.in/" className="text-primary-foreground/80 hover:text-accent transition-colors">
                       {service}
