@@ -141,7 +141,7 @@ export default function AboutPage() {
           <div className="text-center max-w-4xl mx-auto">
             <Badge variant="secondary" className="mb-6 float-animation hero-badge-mask">
               <Building className="w-4 h-4 mr-2" />
-              About Our Company
+              About Effective Solution
             </Badge>
             <h1 className="font-serif font-bold text-4xl lg:text-6xl leading-tight mb-6 hero-title-mask">
               Empowering Businesses Through
